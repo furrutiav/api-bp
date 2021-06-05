@@ -26,14 +26,24 @@ for ix_line, tr in enumerate(tr_table):
             for c in tr.find_all("font"):
                 name_cols.append(c.text)
         else:
-            for i, c in enumerate(tr.find_all("font")):
-                if i == 0:
-                    col_url.append((url_root+c.find("a").get("href")).replace(".htm", ".gif"))
-                    col_id.append(" ".join(c.text.replace("\n", " ").split()))
-                elif i == 1:
-                    col_left.append(" ".join(c.text.replace("\n", " ").split()))
+            list_font = tr.find_all("font")
+            for i, c in enumerate(list_font):
+                if len(list_font) == 3:
+                    if i == 0:
+                        col_url.append((url_root+c.find("a").get("href")).replace(".htm", ".gif"))
+                        col_id.append(" ".join(c.text.replace("\n", " ").split()))
+                    elif i == 1:
+                        col_left.append(" ".join(c.text.replace("\n", " ").split()))
+                    else:
+                        col_right.append(" ".join(c.text.replace("\n", " ").split()))
                 else:
-                    col_right.append(" ".join(c.text.replace("\n", " ").split()))
+                    if i == 0:
+                        col_url.append((url_root+c.find("a").get("href")).replace(".htm", ".gif"))
+                        col_id.append(" ".join(c.text.replace("\n", " ").split()))
+                    elif i == 1:
+                        col_left.append(" ".join(c.text.replace("\n", " ").split()))
+                    elif i == 4:
+                        col_right.append(" ".join(c.text.replace("\n", " ").split()))
     else: break
 
 

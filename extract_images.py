@@ -16,7 +16,7 @@ for bp_id in [f"{i:03}" for i in range(1, 100+1)]:
     image_content = r.content
     image_file = io.BytesIO(image_content)
     image = Image.open(image_file).convert('1')
-    file_path = os.path.join(r"images", "#BP"+bp_id + '.jpg')
+    file_path = os.path.join(r"images", f"#BP{bp_id}.jpg")
     with open(file_path, 'wb') as f:
         image.save(f, "JPEG", quality=100)
 
